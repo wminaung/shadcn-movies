@@ -5,16 +5,20 @@ import React from "react";
 import MyAspectRatio from "@/app/shadcn/MyAspectRatio";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Movie } from "@/Api";
 
 interface Props {
   customClassName?: string;
   isViewAll?: boolean;
+  movie?: Movie;
+  asImage?: boolean;
 }
 
 //https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fc%2Fgracenote%2Fc307cf09b20216353316e6f18bf2756d.jpg
 
-const MyImageCard = ({ customClassName, isViewAll }: Props) => {
-  if (isViewAll) {
+const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
+  // ! go all movies
+  if (!movie || isViewAll) {
     return (
       <Card
         className={cn("border-0 shadow-none dark:bg-gray-900", customClassName)}
@@ -23,7 +27,7 @@ const MyImageCard = ({ customClassName, isViewAll }: Props) => {
           ratio={2 / 3}
           width={10}
           components={
-            <Link href={"/?info='I am not going anywhere'"}>
+            <Link href={"/movie"}>
               <Image
                 fill
                 src={
@@ -47,6 +51,28 @@ const MyImageCard = ({ customClassName, isViewAll }: Props) => {
     );
   }
 
+  // ! in params
+  if (movie && asImage) {
+    return (
+      <Card
+        className={cn("border-0 shadow-none dark:bg-gray-900", customClassName)}
+      >
+        <MyAspectRatio
+          ratio={2 / 3}
+          width={10}
+          components={
+            <Image
+              fill
+              src={"/2.avif"}
+              alt="movie"
+              className="object-cover  rounded-lg  "
+            />
+          }
+        />
+      </Card>
+    );
+  }
+
   return (
     <Card
       className={cn("border-0 shadow-none dark:bg-gray-900", customClassName)}
@@ -55,7 +81,7 @@ const MyImageCard = ({ customClassName, isViewAll }: Props) => {
         ratio={2 / 3}
         width={10}
         components={
-          <Link href={"/?info='I am not going anywhere'"}>
+          <Link href={`/movie/${movie.id}`}>
             <Image
               fill
               src={
@@ -71,9 +97,9 @@ const MyImageCard = ({ customClassName, isViewAll }: Props) => {
 
       {/* Footer Section */}
       <CardFooter className="flex flex-col justify-center items-start px-0 py-2">
-        <p className="text-sm">Movie Description</p>
+        <p className="text-sm">{movie?.title ? movie.title : ""}</p>
 
-        <span>1946</span>
+        <span>{movie?.release_year}</span>
       </CardFooter>
     </Card>
   );

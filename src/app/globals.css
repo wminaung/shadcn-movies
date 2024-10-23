@@ -76,3 +76,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.navbar {
+  position: sticky;
+  top: 0; /* Keeps it at the top of the page */
+  z-index: 1000; /* Ensures it stays above other content */
+  background-color: white; /* Optional: Keeps background visible */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for better visibility */
+}

@@ -12,3 +12,11 @@ export const getYesterdayDate = () => {
   const milliseconds = yesterday.setDate(today.getDate() - 1);
   return new Date(milliseconds);
 };
+
+export const convertMinutesToHoursAndSeconds = (totalMinutes: number) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  const seconds = minutes * 60;
+
+  return { hours, minutes, seconds };
+};
