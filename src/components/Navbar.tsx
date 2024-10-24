@@ -38,7 +38,7 @@ const Navbar = () => {
     callback?: () => void
   ) => {
     if (event.key === "Enter") {
-      navigation.push(`${nextPublicBaseUrl}/movie?title=${searchTerm}`);
+      navigation.push(`/movie?title=${searchTerm}`);
       if (callback && typeof callback === "function") callback();
     }
   };
