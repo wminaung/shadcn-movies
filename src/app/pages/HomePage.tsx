@@ -30,7 +30,7 @@ export default function HomePage() {
             <MyButton
               variant={"link"}
               onClick={() => {
-                router.push(`${nextPublicBaseUrl}/movie?category=${category}`);
+                router.push(`/movie?category=${category}`);
               }}
               className="pl-0 text-xl"
               title={`Go to movies by ${category} category`}
