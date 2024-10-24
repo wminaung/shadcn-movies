@@ -1,22 +1,21 @@
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
+import { RefAttributes } from "react";
 
-interface Props {
-  variant?:
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | "link"
-    | null
-    | undefined;
-  handleClick?: () => void;
-  className?: string | undefined;
-  children: React.ReactNode;
-}
-export function MyButton({ variant, children, handleClick, className }: Props) {
+type Props = ButtonProps & RefAttributes<HTMLButtonElement>;
+export function MyButton({
+  className,
+  onClick,
+  variant,
+  children,
+  ...props
+}: Props) {
   return (
-    <Button className={className} onClick={handleClick} variant={variant}>
+    <Button
+      className={className}
+      onClick={onClick}
+      variant={variant}
+      {...props}
+    >
       {children}
     </Button>
   );

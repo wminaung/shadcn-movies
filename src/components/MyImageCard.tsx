@@ -18,7 +18,10 @@ interface Props {
 
 const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
   // ! go all movies
-  if (!movie || isViewAll) {
+
+  if (!movie) return <div>There is no movie</div>;
+
+  if (isViewAll) {
     return (
       <Card
         className={cn("border-0 shadow-none dark:bg-gray-900", customClassName)}
@@ -27,7 +30,7 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
           ratio={2 / 3}
           width={10}
           components={
-            <Link href={"/movie"}>
+            <Link href={`/movie?category=${movie.category}`}>
               <Image
                 fill
                 src={
@@ -52,7 +55,7 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
   }
 
   // ! in params
-  if (movie && asImage) {
+  if (asImage) {
     return (
       <Card
         className={cn("border-0 shadow-none dark:bg-gray-900", customClassName)}

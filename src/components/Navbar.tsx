@@ -1,5 +1,6 @@
 "use client";
 
+import { nextPublicBaseUrl } from "@/constants/constants";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -28,7 +29,7 @@ const Navbar = () => {
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
     callback?: () => void
   ) => {
-    navigation.push(`http://localhost:3000/movie?title=${searchTerm}`);
+    navigation.push(`/movie?title=${searchTerm}`);
     if (callback && typeof callback === "function") callback();
   };
 
@@ -37,7 +38,7 @@ const Navbar = () => {
     callback?: () => void
   ) => {
     if (event.key === "Enter") {
-      navigation.push(`http://localhost:3000/movie?title=${searchTerm}`);
+      navigation.push(`${nextPublicBaseUrl}/movie?title=${searchTerm}`);
       if (callback && typeof callback === "function") callback();
     }
   };
@@ -136,13 +137,21 @@ const Navbar = () => {
           </div>
           <ul className="flex flex-col items-center bg-gray-700 space-y-4 py-4">
             <li>
-              <Link href="#" className="hover:text-gray-300">
+              <Link
+                href="/"
+                onClick={toggleMenu}
+                className="hover:text-gray-300"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-gray-300">
-                About
+              <Link
+                href="/movie"
+                onClick={toggleMenu}
+                className="hover:text-gray-300"
+              >
+                All
               </Link>
             </li>
             <li>

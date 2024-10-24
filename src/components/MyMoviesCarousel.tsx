@@ -8,9 +8,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import MyImageCard from "./MyImageCard";
-import { useState } from "react";
 import useFetchMovies from "@/hooks/use-fetch-movies";
-import { Movie } from "@/Api";
+
+import { nextPublicApiUrl } from "@/constants/constants";
 //sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 }
 const MyMoviesCarousel = ({ category }: Props) => {
   const { movies, loading, error } = useFetchMovies(
-    `http://localhost:3000/api/movie?category=${category || ""}`
+    `${nextPublicApiUrl}/movie?category=${category || ""}`
   );
 
   if (error) return <div className="text-3xl text-red-700">Error</div>;
@@ -48,6 +48,7 @@ const MyMoviesCarousel = ({ category }: Props) => {
         <CarouselItem className="basis-2/2 sm:basis-1/3 md:basis-1/4 lg:basis:1/5 xl:basis-1/5">
           <MyImageCard
             isViewAll={true}
+            movie={movies[0]}
             customClassName=" w-[150px] sm:w-[160px] md:w-[180px] lg:w-[220px]"
           />
         </CarouselItem>
@@ -56,8 +57,6 @@ const MyMoviesCarousel = ({ category }: Props) => {
         <CarouselPrevious className="absolute left-0 top-1/3 transform -translate-y-2/2 scale-150 " />
         <CarouselNext className="absolute right-0  top-1/3 transform -translate-y-2/2 scale-150" />
       </div>
-      {/* <CarouselPrevious  />
-      <CarouselNext /> */}
     </Carousel>
   );
 };

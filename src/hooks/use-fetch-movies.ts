@@ -5,7 +5,6 @@ const useFetchMovies = (url: string) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     const fetchMovies = async () => {
       try {
