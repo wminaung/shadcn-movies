@@ -1,4 +1,3 @@
-import { movies } from "@/Api";
 import prisma from "@/lib/prisma";
 import { cacheFetch } from "@/lib/redis";
 import { ParamsProps } from "@/types/base";
