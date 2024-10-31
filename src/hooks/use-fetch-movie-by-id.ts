@@ -1,4 +1,4 @@
-import { Movie } from "@/Api";
+import { Movie } from "@prisma/client";
 import { useEffect, useState } from "react";
 
 const useFetchMovieById = (url: string) => {

@@ -11,6 +11,13 @@ export async function GET(request: NextRequest, { params }: ParamsProps) {
   //   (movie) => String(movie.id) === params.id
   // )[0];
 
+  if (!id) {
+    return NextResponse.json(
+      { message: `Params Error params=${id}` },
+      { status: 404 }
+    );
+  }
+
   const searchMovie = await cacheFetch<Movie>(`movie:${id}`, async () => {
     return await prisma.movie.findUnique({
       where: {
