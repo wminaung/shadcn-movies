@@ -24,7 +24,10 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
   if (isViewAll) {
     return (
       <Card
-        className={cn("border-0 shadow-none dark:bg-gray-900", customClassName)}
+        className={cn(
+          "border-0 shadow-none animate-pulse dark:bg-gray-900 transition-all",
+          customClassName
+        )}
       >
         <MyAspectRatio
           ratio={2 / 3}
@@ -37,7 +40,7 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
                   "https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fc%2Fgracenote%2Fc307cf09b20216353316e6f18bf2756d.jpg"
                 }
                 alt="movie"
-                className="object-cover  rounded hover:border-2 
+                className="object-cover transition-all  rounded hover:border-2 
           hover:p-1 hover:border-slate-200 hover:cursor-pointer"
               />
             </Link>
@@ -68,7 +71,7 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
               fill
               src={"/2.avif"}
               alt="movie"
-              className="object-cover  rounded-lg  "
+              className="object-cover  rounded-lg  transition-all"
             />
           }
         />
@@ -91,8 +94,8 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
                 "https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fmetadata-static.plex.tv%2F5%2Fgracenote%2F5e382dfb7014b01cb54d34e74edb8039.jpg"
               }
               alt="movie"
-              className="object-cover  rounded hover:border-2 
-            hover:p-1 hover:border-slate-200 hover:cursor-pointer"
+              className="object-cover  rounded hover:border-2 transition-all   
+            hover:p-1 hover:border-slate-200 hover:cursor-pointer  overflow-hidden"
             />
           </Link>
         }

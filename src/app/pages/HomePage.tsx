@@ -6,6 +6,7 @@ import { MyButton } from "../shadcn/MyButton";
 import { useRouter } from "next/navigation";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { nextPublicApiUrl, nextPublicBaseUrl } from "@/constants/constants";
+import Loading from "@/components/Loading";
 
 export default function HomePage() {
   const { movies, loading, error } = useFetchMovies(
@@ -14,7 +15,7 @@ export default function HomePage() {
   const router = useRouter();
 
   if (error) return <div className="text-3xl text-red-700">Error</div>;
-  if (loading) return <div className="text-3xl text-teal-600 ">Loading...</div>;
+  if (loading) return <Loading />;
 
   const categories = movies.map((movie) => movie.category);
 
@@ -23,10 +24,10 @@ export default function HomePage() {
   );
 
   return (
-    <div className="container mx-auto px-2 xs:px-3 md:px-0  lg:px-4 md:mx-auto">
+    <div className="container mx-auto px-2 xs:px-3 md:px-0 transition-all lg:px-4 md:mx-auto">
       {uniqueCategories.map((category) => (
-        <div key={category} className="flex flex-col">
-          <h3 className="text-lg ">
+        <div key={category} className="flex flex-col transition-all">
+          <h3 className="text-lg transition-all">
             <MyButton
               variant={"link"}
               onClick={() => {
@@ -40,7 +41,7 @@ export default function HomePage() {
           </h3>
 
           <div className="flex justify-center w-full">
-            <MyMoviesCarousel category={category} />
+            <MyMoviesCarousel allMovies={movies} category={category} />
           </div>
         </div>
       ))}

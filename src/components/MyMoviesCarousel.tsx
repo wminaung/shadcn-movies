@@ -11,18 +11,18 @@ import MyImageCard from "./MyImageCard";
 import useFetchMovies from "@/hooks/use-fetch-movies";
 
 import { nextPublicApiUrl } from "@/constants/constants";
+import MySkeleton from "@/app/shadcn/MySkeleton";
+import { Movie } from "@prisma/client";
 //sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
 
 interface Props {
   category: string;
+  allMovies: Movie[];
 }
-const MyMoviesCarousel = ({ category }: Props) => {
-  const { movies, loading, error } = useFetchMovies(
-    `${nextPublicApiUrl}/movie?category=${category || ""}`
-  );
-
-  if (error) return <div className="text-3xl text-red-700">Error</div>;
-  if (loading) return <div className="text-3xl text-teal-600 ">Loading...</div>;
+const MyMoviesCarousel = ({ category, allMovies }: Props) => {
+  const movies = allMovies.filter((movie) => {
+    return movie.category.toLowerCase() === category.toLowerCase();
+  });
 
   return (
     <Carousel

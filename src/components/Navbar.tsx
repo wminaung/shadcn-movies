@@ -92,10 +92,10 @@ const Navbar = () => {
         </ul>
 
         {/* Hamburger icon for mobile */}
-        <div className="md:hidden">
+        <div className="md:hidden transition-all ease-linear duration-1000 ">
           <button onClick={toggleMenu}>
             <svg
-              className="w-6 h-6"
+              className="w-6 h-6 transition-all ease-linear duration-1000"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -114,7 +114,7 @@ const Navbar = () => {
 
       {/* Dropdown for mobile */}
       {isOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden animate-in transition-all ease-linear duration-1000">
           <div className="p-4">
             <input
               type="text"
