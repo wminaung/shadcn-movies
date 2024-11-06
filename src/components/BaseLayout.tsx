@@ -19,7 +19,7 @@ const BaseLayout = ({ children }: Props) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
       <Navbar />
-      <main className="pt-16">{children}</main>
+      <main className="pt-24">{children}</main>
     </ThemeProvider>
   );
 };

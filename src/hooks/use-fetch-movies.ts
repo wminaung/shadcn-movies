@@ -1,4 +1,4 @@
-import { Movie } from "@prisma/client";
+import { Movie } from "@/types/generated/client";
 import { useEffect, useState } from "react";
 
 const useFetchMovies = (url: string) => {

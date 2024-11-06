@@ -1,11 +1,11 @@
 import prisma from "@/lib/prisma";
 import { cacheFetch } from "@/lib/redis";
 import { ParamsProps } from "@/types/base";
-import { Movie } from "@prisma/client";
+import { Movie } from "@/types/generated/client";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest, { params }: ParamsProps) {
-  const id = Number(params.id) || 0;
+  const id = params.id;
   // const searchMovie = movies.filter(
   //   (movie) => String(movie.id) === params.id
   // )[0];

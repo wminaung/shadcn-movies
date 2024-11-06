@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { cacheFetch, redis } from "@/lib/redis";
-import { Movie } from "@prisma/client";
+import { Movie } from "@/types/generated/client";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {

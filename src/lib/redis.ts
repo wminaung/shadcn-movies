@@ -1,4 +1,3 @@
-import { Movie } from "@prisma/client";
 import { Redis } from "@upstash/redis";
 
 // Initialize Redis

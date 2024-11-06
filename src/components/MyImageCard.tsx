@@ -5,7 +5,7 @@ import React from "react";
 import MyAspectRatio from "@/app/shadcn/MyAspectRatio";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Movie } from "@/Api";
+import { Movie } from "@/types/generated/client";
 
 interface Props {
   customClassName?: string;

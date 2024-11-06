@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "./../src/types/generated/client"
 }
 
 datasource db {
@@ -9,12 +10,12 @@ datasource db {
 }
 
 model Movie {
-  id           Int    @id @default(autoincrement()) // Unique identifier for the movie
-  title        String // Title of the movie
-  category     String // Category or genre of the movie
-  release_year Int // Year the movie was released
-  description  String // Brief description of the movie
-  rating       Float // Rating of the movie
-  director     String // Director of the movie
-  runtime      Int // Runtime of the movie in minutes
+  id           String @id @default(cuid())
+  title        String
+  category     String
+  release_year Int
+  description  String
+  rating       Float
+  director     String
+  runtime      Int
 }
