@@ -12,7 +12,7 @@ import useFetchMovies from "@/hooks/use-fetch-movies";
 
 import { nextPublicApiUrl } from "@/constants/constants";
 import MySkeleton from "@/app/shadcn/MySkeleton";
-import { Movie } from "@/types/generated/client";
+import { Movie } from "prisma/prisma-client";
 //sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
 
 interface Props {

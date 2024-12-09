@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma";
 import { cacheFetch } from "@/lib/redis";
 import { ParamsProps } from "@/types/base";
-import { Movie } from "@/types/generated/client";
 import { NextResponse, type NextRequest } from "next/server";
+import { Movie } from "prisma/prisma-client";
 
 export async function GET(request: NextRequest, { params }: ParamsProps) {
   const id = params.id;
