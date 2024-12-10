@@ -5,7 +5,7 @@ import React from "react";
 import MyAspectRatio from "@/app/shadcn/MyAspectRatio";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Movie } from "prisma/prisma-client";
+import { Movie } from "@prisma/client";
 
 interface Props {
   customClassName?: string;
