@@ -10,9 +10,9 @@ interface Props {
 }
 
 const MovieByIdPage = ({ params }: Props) => {
-  const { error, loading, movie } = useFetchMovieById(
-    `${nextPublicApiUrl}/movie/${params.id}`
-  );
+  const { error, loading, movie } = useFetchMovieById({
+    id: params.id,
+  });
 
   if (error) return <div className="text-3xl text-red-700">Error</div>;
   if (loading) return <div className="text-3xl text-teal-600 ">Loading...</div>;

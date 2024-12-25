@@ -8,11 +8,10 @@ interface Props {
   searchParams: { title?: string; category?: string };
 }
 export default function AllMoviePage({ searchParams }: Props) {
-  const { movies, loading, error } = useFetchMovies(
-    `${nextPublicApiUrl}/movie?title=${searchParams.title || ""}&category=${
-      searchParams.category || ""
-    }`
-  );
+  const { movies, loading, error } = useFetchMovies({
+    category: searchParams.category,
+    title: searchParams.title,
+  });
 
   if (error) return <div className="text-3xl text-red-700">Error</div>;
   if (loading) return <Loading />;
