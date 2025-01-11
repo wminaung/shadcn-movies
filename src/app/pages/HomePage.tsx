@@ -9,22 +9,25 @@ import { nextPublicApiUrl, nextPublicBaseUrl } from "@/constants/constants";
 import Loading from "@/components/Loading";
 
 export default function HomePage() {
-  const { movies, loading, error } = useFetchMovies(
-    `${nextPublicApiUrl}/movie`
-  );
+  const { movies, loading, error } = useFetchMovies();
   const router = useRouter();
 
   if (error) return <div className="text-3xl text-red-700">Error</div>;
   if (loading) return <Loading />;
 
-  const categories = movies.map((movie) => movie.category);
-
-  const uniqueCategories = categories.filter(
-    (value, index, self) => self.indexOf(value) === index
+  const categories = movies.flatMap((movie) =>
+    movie.categories.map((categoryObj) => categoryObj.category.name)
   );
 
+  const uniqueCategories = [...new Set(categories)];
+
+  console.log(uniqueCategories);
+  // const uniqueCategories = categories.filter(
+  //   (value, index, self) => self.indexOf(value) === index
+  // );
+
   return (
-    <div className="container mx-auto px-2 xs:px-3 md:px-0 transition-all lg:px-4 md:mx-auto">
+    <div className="container overflow-hidden mx-auto px-2 xs:px-3 md:px-0 transition-all lg:px-4 md:mx-auto">
       {uniqueCategories.map((category) => (
         <div key={category} className="flex flex-col transition-all">
           <h3 className="text-lg transition-all">
@@ -40,7 +43,7 @@ export default function HomePage() {
             </MyButton>
           </h3>
 
-          <div className="flex justify-center w-full">
+          <div className="flex container justify-center">
             <MyMoviesCarousel allMovies={movies} category={category} />
           </div>
         </div>

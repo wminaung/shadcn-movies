@@ -8,21 +8,17 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import MyImageCard from "./MyImageCard";
-import useFetchMovies from "@/hooks/use-fetch-movies";
-
-import { nextPublicApiUrl } from "@/constants/constants";
-import MySkeleton from "@/app/shadcn/MySkeleton";
-import { Movie } from "@prisma/client";
+import { MovieResponse } from "@/types/base";
 //sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
 
 interface Props {
   category: string;
-  allMovies: Movie[];
+  allMovies: MovieResponse[];
 }
 const MyMoviesCarousel = ({ category, allMovies }: Props) => {
-  const movies = allMovies.filter((movie) => {
-    return movie.category.toLowerCase() === category.toLowerCase();
-  });
+  const movies = allMovies.filter(
+    (movie) => !!movie.categories.find((c) => c.category.name === category)
+  );
 
   return (
     <Carousel
@@ -30,7 +26,7 @@ const MyMoviesCarousel = ({ category, allMovies }: Props) => {
         // align: "start",
         slidesToScroll: "auto",
       }}
-      className="w-full"
+      className="w-full "
     >
       <CarouselContent>
         {movies.map((movie, index) => (
@@ -40,7 +36,7 @@ const MyMoviesCarousel = ({ category, allMovies }: Props) => {
           >
             <MyImageCard
               movie={movie}
-              customClassName=" w-[150px] sm:w-[160px] md:w-[180px] lg:w-[220px]"
+              customClassName=" w-[150px] sm:w-[160px] md:w-[160px] lg:w-[220px]"
             />
           </CarouselItem>
         ))}
@@ -49,7 +45,8 @@ const MyMoviesCarousel = ({ category, allMovies }: Props) => {
           <MyImageCard
             isViewAll={true}
             movie={movies[0]}
-            customClassName=" w-[150px] sm:w-[160px] md:w-[180px] lg:w-[220px]"
+            category={category}
+            customClassName=" w-[150px] sm:w-[160px] md:w-[160px] lg:w-[220px]"
           />
         </CarouselItem>
       </CarouselContent>

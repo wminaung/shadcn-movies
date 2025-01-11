@@ -5,18 +5,26 @@ import React from "react";
 import MyAspectRatio from "@/app/shadcn/MyAspectRatio";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Movie } from "@prisma/client";
+import { Movie } from "@/core/entity/Movie";
+import { MovieResponse } from "@/types/base";
 
 interface Props {
   customClassName?: string;
   isViewAll?: boolean;
-  movie?: Movie;
+  movie?: MovieResponse;
   asImage?: boolean;
+  category?: string;
 }
 
 //https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fc%2Fgracenote%2Fc307cf09b20216353316e6f18bf2756d.jpg
 
-const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
+const MyImageCard = ({
+  customClassName,
+  category,
+  isViewAll,
+  movie,
+  asImage,
+}: Props) => {
   // ! go all movies
 
   if (!movie) return <div>There is no movie</div>;
@@ -33,7 +41,7 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
           ratio={2 / 3}
           width={10}
           components={
-            <Link href={`/movie?category=${movie.category}`}>
+            <Link href={`/movie?category=${category || ``}`}>
               <Image
                 fill
                 src={
@@ -46,13 +54,6 @@ const MyImageCard = ({ customClassName, isViewAll, movie, asImage }: Props) => {
             </Link>
           }
         />
-
-        {/* Footer Section */}
-        {/* <CardFooter className="flex flex-col justify-center items-start px-0 py-2">
-          <p className="text-sm">Movie Description</p>
-
-          <span>1946</span>
-        </CardFooter> */}
       </Card>
     );
   }
