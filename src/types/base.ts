@@ -8,5 +8,3 @@ export interface ParamsProps {
 export interface MovieResponse extends Movie {
   categories: { category: Category }[];
 }
-
-let a = {} as MovieResponse;
