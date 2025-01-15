@@ -70,7 +70,7 @@ const MyImageCard = ({
           components={
             <Image
               fill
-              src={movie.id || `/2.avif`}
+              src={movie.image || `/2.avif`}
               alt="movie"
               className="object-cover  rounded-lg  transition-all"
             />
@@ -91,7 +91,8 @@ const MyImageCard = ({
           <Link href={`/movie/${movie.id}`}>
             <Image
               fill
-              src={movie.id || `/2.avif`}
+              src={movie.image || `/2.avif`}
+              loading="lazy"
               alt="movie"
               className="object-cover  rounded hover:border-2 transition-all   
             hover:p-1 hover:border-slate-200 hover:cursor-pointer  overflow-hidden"
