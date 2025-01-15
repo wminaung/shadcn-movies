@@ -70,7 +70,7 @@ const MyImageCard = ({
           components={
             <Image
               fill
-              src={"/2.avif"}
+              src={movie.id || `/2.avif`}
               alt="movie"
               className="object-cover  rounded-lg  transition-all"
             />
@@ -91,9 +91,7 @@ const MyImageCard = ({
           <Link href={`/movie/${movie.id}`}>
             <Image
               fill
-              src={
-                "https://images.plex.tv/photo?size=medium-360&scale=1&url=https%3A%2F%2Fmetadata-static.plex.tv%2F5%2Fgracenote%2F5e382dfb7014b01cb54d34e74edb8039.jpg"
-              }
+              src={movie.id || `/2.avif`}
               alt="movie"
               className="object-cover  rounded hover:border-2 transition-all   
             hover:p-1 hover:border-slate-200 hover:cursor-pointer  overflow-hidden"
