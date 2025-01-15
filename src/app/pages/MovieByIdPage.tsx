@@ -19,7 +19,6 @@ const MovieByIdPage = ({ params }: Props) => {
   if (error) return <div className="text-3xl text-red-700">Error</div>;
   if (loading) return <Loading />;
 
-  console.log(movie);
   const id = params.id;
   const duration = convertMinutesToHoursAndSeconds(movie.runtime);
   const LinkByCat = () => {

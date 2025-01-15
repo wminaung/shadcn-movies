@@ -21,11 +21,6 @@ export default function HomePage() {
 
   const uniqueCategories = [...new Set(categories)];
 
-  console.log(uniqueCategories);
-  // const uniqueCategories = categories.filter(
-  //   (value, index, self) => self.indexOf(value) === index
-  // );
-
   return (
     <div className="container overflow-hidden mx-auto px-2 xs:px-3 md:px-0 transition-all lg:px-4 md:mx-auto">
       {uniqueCategories.map((category) => (
